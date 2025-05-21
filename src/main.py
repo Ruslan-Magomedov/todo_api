@@ -1,20 +1,11 @@
 from fastapi import FastAPI
 import uvicorn
 
-from src.config import settings
+from src.routers.todo import router as todo_router
 
 
 app = FastAPI()
-
-
-@app.get("/")
-def home_api() -> dict:
-    return {"message": "add docs to link"}
-
-
-@app.get("/DB.URL")
-def db_url() -> dict:
-    return {"DB url": settings.db_url}
+app.include_router(todo_router)
 
 
 if __name__ == "__main__":
